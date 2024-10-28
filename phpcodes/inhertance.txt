@@ -1,0 +1,356 @@
+1. PHP Class 'Rectangle' with Area and Perimeter Methods
+php
+Copy code
+<?php
+class Rectangle {
+    public $length;
+    public $width;
+
+    public function __construct($length, $width) {
+        $this->length = $length;
+        $this->width = $width;
+    }
+
+    public function calculateArea() {
+        return $this->length * $this->width;
+    }
+
+    public function calculatePerimeter() {
+        return 2 * ($this->length + $this->width);
+    }
+}
+
+// Example usage:
+$rectangle = new Rectangle(10, 5);
+echo "Area: " . $rectangle->calculateArea() . "\n";
+echo "Perimeter: " . $rectangle->calculatePerimeter();
+?>
+
+
+2. Abstract Class 'Shape' with Subclasses 'Triangle' and 'Rectangle'
+php
+Copy code
+<?php
+abstract class Shape {
+    abstract public function calculateArea();
+}
+
+class Triangle extends Shape {
+    private $base;
+    private $height;
+
+    public function __construct($base, $height) {
+        $this->base = $base;
+        $this->height = $height;
+    }
+
+    public function calculateArea() {
+        return 0.5 * $this->base * $this->height;
+    }
+}
+
+class Rectangle extends Shape {
+    private $length;
+    private $width;
+
+    public function __construct($length, $width) {
+        $this->length = $length;
+        $this->width = $width;
+    }
+
+    public function calculateArea() {
+        return $this->length * $this->width;
+    }
+}
+
+// Example usage:
+$triangle = new Triangle(10, 5);
+echo "Triangle Area: " . $triangle->calculateArea() . "\n";
+
+$rectangle = new Rectangle(10, 5);
+echo "Rectangle Area: " . $rectangle->calculateArea();
+?>
+
+
+3. PHP Interface 'Resizable' and Class 'Square' Implementing it
+php
+Copy code
+<?php
+interface Resizable {
+    public function resize($factor);
+}
+
+class Square implements Resizable {
+    private $side;
+
+    public function __construct($side) {
+        $this->side = $side;
+    }
+
+    public function resize($factor) {
+        $this->side *= $factor;
+    }
+
+    public function getSide() {
+        return $this->side;
+    }
+}
+
+// Example usage:
+$square = new Square(5);
+$square->resize(2);
+echo "New side length: " . $square->getSide();
+?>
+
+
+4. Class 'Student' with Display Method
+php
+Copy code
+<?php
+class Student {
+    public $name;
+    public $age;
+    public $grade;
+
+    public function __construct($name, $age, $grade) {
+        $this->name = $name;
+        $this->age = $age;
+        $this->grade = $grade;
+    }
+
+    public function displayInfo() {
+        echo "Name: $this->name, Age: $this->age, Grade: $this->grade\n";
+    }
+}
+
+// Example usage:
+$student = new Student("John", 20, "A");
+$student->displayInfo();
+?>
+
+
+5. Abstract Class 'Animal' with Subclasses 'Dog', 'Cat', and 'Bird'
+php
+Copy code
+<?php
+abstract class Animal {
+    abstract public function eat();
+    abstract public function makeSound();
+}
+
+class Dog extends Animal {
+    public function eat() {
+        echo "Dog is eating.\n";
+    }
+    public function makeSound() {
+        echo "Dog barks.\n";
+    }
+}
+
+class Cat extends Animal {
+    public function eat() {
+        echo "Cat is eating.\n";
+    }
+    public function makeSound() {
+        echo "Cat meows.\n";
+    }
+}
+
+class Bird extends Animal {
+    public function eat() {
+        echo "Bird is eating.\n";
+    }
+    public function makeSound() {
+        echo "Bird chirps.\n";
+    }
+}
+
+// Example usage:
+$dog = new Dog();
+$dog->eat();
+$dog->makeSound();
+?>
+
+
+6. Class 'File' with Static Method to Calculate Total Size
+php
+Copy code
+<?php
+class File {
+    public $name;
+    public $size;
+
+    public function __construct($name, $size) {
+        $this->name = $name;
+        $this->size = $size;
+    }
+
+    public static function totalSize($files) {
+        $total = 0;
+        foreach ($files as $file) {
+            $total += $file->size;
+        }
+        return $total;
+    }
+}
+
+// Example usage:
+$file1 = new File("File1", 200);
+$file2 = new File("File2", 300);
+echo "Total size: " . File::totalSize([$file1, $file2]);
+?>
+
+
+7. Class 'BankAccount' with Deposit and Withdraw Methods
+php
+Copy code
+<?php
+class BankAccount {
+    public $accountNumber;
+    public $balance;
+
+    public function __construct($accountNumber, $balance = 0) {
+        $this->accountNumber = $accountNumber;
+        $this->balance = $balance;
+    }
+
+    public function deposit($amount) {
+        $this->balance += $amount;
+    }
+
+    public function withdraw($amount) {
+        if ($amount <= $this->balance) {
+            $this->balance -= $amount;
+        } else {
+            echo "Insufficient balance.\n";
+        }
+    }
+}
+
+// Example usage:
+$account = new BankAccount("123456");
+$account->deposit(500);
+$account->withdraw(200);
+echo "Balance: " . $account->balance;
+?>
+
+
+8. Library System with Item, Book, and DVD Classes
+php
+Copy code
+<?php
+class Item {
+    public $title;
+
+    public function __construct($title) {
+        $this->title = $title;
+    }
+}
+
+class Book extends Item {
+    public $author;
+    public $isbn;
+
+    public function __construct($title, $author, $isbn) {
+        parent::__construct($title);
+        $this->author = $author;
+        $this->isbn = $isbn;
+    }
+}
+
+class DVD extends Item {
+    public $director;
+    public $duration;
+
+    public function __construct($title, $director, $duration) {
+        parent::__construct($title);
+        $this->director = $director;
+        $this->duration = $duration;
+    }
+}
+
+// Example usage:
+$book = new Book("Book Title", "Author Name", "123456");
+$dvd = new DVD("DVD Title", "Director Name", 120);
+?>
+
+
+9. Classes Implementing Multiple Interfaces
+php
+Copy code
+<?php
+interface InterfaceA {
+    public function methodA();
+}
+
+interface InterfaceB {
+    public function methodB();
+}
+
+class ClassA implements InterfaceA {
+    public function methodA() {
+        echo "Method A\n";
+    }
+}
+
+class ClassB implements InterfaceB {
+    public function methodB() {
+        echo "Method B\n";
+    }
+}
+
+class ClassC extends ClassA implements InterfaceB {
+    public function methodB() {
+        echo "Method B in ClassC\n";
+    }
+}
+
+// Example usage:
+$c = new ClassC();
+$c->methodA();
+$c->methodB();
+?>
+
+
+10. Polymorphism with Employee Subclasses
+php
+Copy code
+<?php
+abstract class Employee {
+    protected $name;
+    protected $salary;
+
+    public function __construct($name, $salary) {
+        $this->name = $name;
+        $this->salary = $salary;
+    }
+
+    abstract public function calculatePay();
+}
+
+class HourlyEmployee extends Employee {
+    private $hoursWorked;
+
+    public function __construct($name, $hourlyRate, $hoursWorked) {
+        parent::__construct($name, $hourlyRate);
+        $this->hoursWorked = $hoursWorked;
+    }
+
+    public function calculatePay() {
+        return $this->salary * $this->hoursWorked;
+    }
+}
+
+class SalariedEmployee extends Employee {
+    public function calculatePay() {
+        return $this->salary / 12;
+    }
+}
+
+// Example usage:
+$hourly = new HourlyEmployee("Alice", 20, 160);
+$salaried = new SalariedEmployee("Bob", 60000);
+
+echo "Hourly Employee Pay: " . $hourly->calculatePay() . "\n";
+echo "Salaried Employee Pay: " . $salaried->calculatePay();
+?>
